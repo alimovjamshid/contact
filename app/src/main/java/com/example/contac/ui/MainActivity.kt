@@ -19,7 +19,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contac.ContactsModal
+import com.example.contac.modal.ContactsModal
 import com.example.contac.adapter.ContactsRVAdapter
 import com.example.contac.R
 import com.example.contac.databinding.ActivityMainBinding

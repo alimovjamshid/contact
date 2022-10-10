@@ -1,4 +1,4 @@
-package com.example.contac
+package com.example.contac.modal
 
 data class ContactsModal(
     var contactName: String,

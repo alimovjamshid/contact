@@ -5,15 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/untitled"
     tools:context=".ui.MainActivity">
 
-    <!--Recycler view for displaying list of contacts-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/idRVContacts"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="-2dp"
+        android:layout_marginBottom="0dp" />
 
-    <!--progress bar for displaying loading-->
     <ProgressBar
         android:id="@+id/idPBLoading"
         android:layout_width="wrap_content"
@@ -28,9 +35,11 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="20dp"
+        android:backgroundTint="@color/backround"
+        android:contentDescription="@string/aaa"
         android:src="@drawable/ic_account"
         app:fabCustomSize="40dp"
-        android:backgroundTint="@color/purple_500"
-        app:tint="@color/white"
-        android:contentDescription="@string/aaa" />
+        app:tint="@color/white" />
+
+
 </RelativeLayout>
