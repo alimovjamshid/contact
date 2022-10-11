@@ -2,7 +2,6 @@ package com.example.contac.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.DialogInterface
 import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
@@ -19,18 +18,18 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.contac.modal.ContactsModal
-import com.example.contac.adapter.ContactsRVAdapter
 import com.example.contac.R
+import com.example.contac.adapter.ContactsRVAdapter
 import com.example.contac.databinding.ActivityMainBinding
+import com.example.contac.modal.ContactsModal
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import java.util.*
-import kotlin.collections.ArrayList
 
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var arrayList: ArrayList<ContactsModal>
@@ -103,19 +102,19 @@ class MainActivity : AppCompatActivity() {
         builder.setTitle("Need Permissions")
 
         builder.setMessage("This app needs permission to use this feature. You can grant them in app settings.")
-        builder.setPositiveButton("GOTO SETTINGS",
-            DialogInterface.OnClickListener { dialog, which -> // this method is called on click on positive
-                dialog.cancel()
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                val uri: Uri = Uri.fromParts("package", packageName, null)
-                intent.data = uri
-                startActivityForResult(intent, 101)
-            })
-        builder.setNegativeButton("Cancel",
-            DialogInterface.OnClickListener { dialog, which -> // this method is called when
-                // user click on negative button.
-                dialog.cancel()
-            })
+        builder.setPositiveButton("GOTO SETTINGS"
+        ) { dialog, _ -> // this method is called on click on positive
+            dialog.cancel()
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+            val uri: Uri = Uri.fromParts("package", packageName, null)
+            intent.data = uri
+            startActivityForResult(intent, 101)
+        }
+        builder.setNegativeButton("Cancel"
+        ) { dialog, _ -> // this method is called when
+            // user click on negative button.
+            dialog.cancel()
+        }
         builder.show()
     }
 
@@ -123,10 +122,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_menu,menu)
         val searchItem: MenuItem? = menu?.findItem(R.id.app_bar_search)
-        val searchView: SearchView? = searchItem?.actionView as SearchView
+        val searchView: SearchView = searchItem?.actionView as SearchView
 
 
-        searchView?.setOnQueryTextListener(object : OnQueryTextListener{
+        searchView.setOnQueryTextListener(object : OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
                 return false
@@ -141,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun prepareContactRV(){
+    private fun prepareContactRV(){
         val adaptercontacts = ContactsRVAdapter(this,arrayList)
         contactRv.layoutManager=LinearLayoutManager(this)
         binding.idRVContacts.adapter=adaptercontacts
@@ -149,8 +148,8 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("Range", "NotifyDataSetChanged")
     fun getContacts(){
-        var contactId=""
-        var displayName=""
+        var contactId: String
+        var displayName: String
 
         val cursor = contentResolver.query(
             ContactsContract.Contacts.CONTENT_URI,
@@ -178,7 +177,7 @@ class MainActivity : AppCompatActivity() {
                     )
                     if (phoneCursor!!.moveToNext()) {
                         val phoneNumber: String =
-                            phoneCursor!!.getString(phoneCursor!!.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                            phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
                         arrayList.add(ContactsModal(displayName, phoneNumber, R.drawable.ic_person))
                     }
                     phoneCursor.close()

@@ -1,7 +1,6 @@
 package com.example.contac.ui
 
 import android.Manifest
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -13,8 +12,7 @@ import com.example.contac.databinding.ActivityContactDetailsBinding
 
 class ContactDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityContactDetailsBinding
-    private lateinit var context: Context
-    private var contactName: String? = null; private  var contactNumber:kotlin.String? = null
+    private var contactName: String? = null; private  var contactNumber:String? = null
     private var contactImage :String?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {

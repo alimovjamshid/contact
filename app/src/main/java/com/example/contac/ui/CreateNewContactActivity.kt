@@ -10,6 +10,7 @@ import android.text.TextUtils
 import android.widget.Toast
 import com.example.contac.databinding.ActivityCreateNewContactBinding
 
+@Suppress("DEPRECATION")
 class CreateNewContactActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateNewContactBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,15 +32,16 @@ class CreateNewContactActivity : AppCompatActivity() {
         }
 
     }
-    fun addConatct(name: Editable, email: Editable, phone: Editable){
+    private fun addConatct(name: Editable, email: Editable, phone: Editable){
         val intent=Intent(ContactsContract.Intents.Insert.ACTION)
-        intent.setType(ContactsContract.RawContacts.CONTENT_TYPE)
+        intent.type = ContactsContract.RawContacts.CONTENT_TYPE
         intent.putExtra(ContactsContract.Intents.Insert.NAME,name)
         intent.putExtra(ContactsContract.Intents.Insert.PHONE,phone)
         intent.putExtra(ContactsContract.Intents.Insert.EMAIL,email)
         startActivityForResult(intent,1)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

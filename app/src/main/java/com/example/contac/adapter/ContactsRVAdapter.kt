@@ -1,6 +1,5 @@
 package com.example.contac.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -47,9 +46,4 @@ class ContactsRVAdapter(private val context: Context, private var arraylist:List
         return arraylist.count()
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun filterList(filterlist:ArrayList<ContactsModal>){
-        arraylist = filterlist
-        notifyDataSetChanged()
-    }
 }

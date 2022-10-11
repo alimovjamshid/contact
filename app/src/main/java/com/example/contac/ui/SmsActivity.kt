@@ -1,16 +1,16 @@
 package com.example.contac.ui
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.telephony.SmsManager
 import android.widget.Toast
 import com.example.contac.databinding.ActivitySmsBinding
 
+@Suppress("DEPRECATION")
 class SmsActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySmsBinding
-    private var contactName: String? = null; private  var contactNumber:kotlin.String? = null
+    private var contactName: String? = null; private  var contactNumber:String? = null
     private var contactImage :String?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
